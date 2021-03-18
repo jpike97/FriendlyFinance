@@ -1,0 +1,10 @@
+server/node_modules/
+node_modules/
+python_logic/config.py
+python_logic/__pycache__/config.cpython-37.pyc
+python_logic/img/image.jpg
+python_logic/utilities/__pycache__/findTickers.cpython-37.pyc
+*.pyc
+server/config.json
+*.env
+client/src/config.json
