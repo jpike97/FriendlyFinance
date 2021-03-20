@@ -1,7 +1,7 @@
 import Api from '@/services/Api'
 
 export default {
-  fetchUserDetail(id) {
-    return Api().get("users/" + id)
+  fetchUserDetail(username) {
+    return Api().get("users/" + username)
   }
 }

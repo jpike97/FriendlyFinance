@@ -5,9 +5,9 @@
 			<div
 				class="user__wrapper"
 				v-for="user in users"
-				:key="user.id"
+				:key="user.username"
 			>
-			<h1>{{user.id}}</h1>
+			<h1>{{user.username}}</h1>
 			<p>{{user.units}}</p>
 			</div>
 		</div>
