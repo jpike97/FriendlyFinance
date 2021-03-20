@@ -5,12 +5,12 @@ const cors = require('cors');
 const app = express();
 const port = 8000;
 
-const routesApi = require('./routes/index');
+const routes = require('./routes/index');
 
 app.use(bodyParser.json());
 app.use(cors());
 app.use(express.urlencoded({ extended: true }));
-app.use(routesApi);
+app.use(routes);
 
 var users = require("./models/users").users;
 
@@ -27,10 +27,9 @@ app.get('/users', (req, res) => {
   }).sort({numMentions:-1, currentPrice: -1}).limit(12)
 });
 
-app.get('/users/:id', (req, res) => {
-  const id = req.params.id;
-  var event = "";
-  users.find({id: id}, function(err, user) {
+app.get('/users/:username', (req, res) => {
+  const username = req.params.username;
+  users.find({username: username}, function(err, user) {
     res.send({
       user: user
     })
