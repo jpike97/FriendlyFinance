@@ -1,31 +1,16 @@
+require('./db');
 const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require('cors');
 const app = express();
 const port = 8000;
-const mongoose = require('mongoose');
-var options = require('./options');
 
+const routesApi = require('./routes/index');
 
 app.use(bodyParser.json());
 app.use(cors());
 app.use(express.urlencoded({ extended: true }));
-
-const uri = options.storageConfig.uri;
-
-mongoose.connect(uri, {
-  useNewUrlParser: true,
-  useUnifiedTopology: true
-})
-.then(() => {
-  console.log("MongoDB Connected…")
-})
-.catch(err => console.log(err))
-
-var db = mongoose.connection;
-db.once('open', function() {
-  console.log("Connection Successful!");
-});
+app.use(routesApi);
 
 var users = require("./models/users").users;
 
@@ -50,12 +35,6 @@ app.get('/users/:id', (req, res) => {
       user: user
     })
   }).sort({id:-1}).limit(1);
-});
-
-
-//test code end
-app.get('/', (req, res) => {
-  res.send(`Hi! Server is listening on port ${port}`)
 });
 
 
