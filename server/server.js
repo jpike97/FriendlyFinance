@@ -1,22 +1,18 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require('cors');
-const mongoose = require('mongoose');
 const app = express();
 const port = 8000;
+const mongoose = require('mongoose');
 var options = require('./options');
-
-var loginData = {
-        username: options.storageConfig.username,
-        password: options.storageConfig.password
-};
 
 
 app.use(bodyParser.json());
 app.use(cors());
 app.use(express.urlencoded({ extended: true }));
 
-const uri = "mongodb+srv://" + loginData.username + ":" + loginData.password + "@cluster0.tgu4c.mongodb.net/sampledatabase?retryWrites=true&w=majority";
+const uri = options.storageConfig.uri;
+
 mongoose.connect(uri, {
   useNewUrlParser: true,
   useUnifiedTopology: true
@@ -31,23 +27,11 @@ db.once('open', function() {
   console.log("Connection Successful!");
 });
 
-var Schema = mongoose.Schema;
+var users = require("./models/users").users;
 
+var positions = require("./models/positions").positions;
 
-var users = mongoose.model('users', new Schema({
-  id: String,
-  units: Number,
-  positions: Array
-}, { collection: 'users'}
-));
-
-var positions = mongoose.model('positions', new Schema({
-  id: String,
-  units: Number,
-  positions: Array
-}, { collection: 'positions'}
-));
-
+var userAuthCollection = require("./models/userAuthCollection").userAuthCollection;
 
 app.get('/users', (req, res) => {
   users.find({}, function (error, users) {
