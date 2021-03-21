@@ -18,6 +18,8 @@ const userAuthSchema = new mongoose.Schema({
 });
 
 userAuthSchema.methods.setPassword = function(password) {
+  console.log("Setting password");
+  console.log(password);
   this.salt = crypto.randomBytes(16).toString('hex');
   this.hash = crypto
     .pbkdf2Sync(password, this.salt, 1000, 64, 'sha512')

@@ -6,8 +6,10 @@ const passport = require('passport');
 const cors = require('cors');
 const app = express();
 const port = 8000;
+var router = express.Router();
 
-let routes = ['index','user'];
+
+let routes = ['index','user', 'register'];
 
 app.use(passport.initialize());
 app.use(bodyParser.json());
