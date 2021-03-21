@@ -1,7 +1,7 @@
 var express = require('express');
 var router = express.Router();
 
-var users = require("../models/users").users;
+var userAuthModel = require("./models/userAuthModel").userAuthModel;
 
 router.get('/users', (req, res) => {
     users.find({}, function (error, users) {
