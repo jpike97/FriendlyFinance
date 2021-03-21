@@ -1,24 +1,31 @@
 var express = require('express');
 var router = express.Router();
+const passport = require('passport');
 
-var userAuthModel = require("./models/userAuthModel").userAuthModel;
+router.get('/login', function(req, res) {
 
-router.get('/users', (req, res) => {
-    users.find({}, function (error, users) {
-      if (error) { console.error(error); }
-      res.send({
-        users: users
-      })
-    }).sort({numMentions:-1, currentPrice: -1}).limit(12)
-  });
+    passport.authenticate('local', function(err, user, info){
+      var token;
   
-router.get('/users/:username', (req, res) => {
-    const username = req.params.username;
-    users.find({username: username}, function(err, user) {
-      res.send({
-        user: user
-      })
-    }).sort({id:-1}).limit(1);
+      // If Passport throws/catches an error
+      if (err) {
+        res.status(404).json(err);
+        return;
+      }
+  
+      // If a user is found
+      if(user){
+        token = user.generateJwt();
+        res.status(200);
+        res.json({
+          "token" : token
+        });
+      } else {
+        // If user is not found
+        res.status(401).json(info);
+      }
+    })(req, res);
+  
   });
   
 module.exports = router;

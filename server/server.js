@@ -9,7 +9,7 @@ const port = 8000;
 var router = express.Router();
 
 
-let routes = ['index','user', 'register'];
+let routes = ['index','user', 'register', 'login'];
 
 app.use(passport.initialize());
 app.use(bodyParser.json());
