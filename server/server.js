@@ -2,6 +2,7 @@ require('./db');
 require('./config/passport');
 const express = require('express');
 const bodyParser = require('body-parser');
+const Mongoose = require('mongoose');
 const passport = require('passport');
 const cors = require('cors');
 const app = express();

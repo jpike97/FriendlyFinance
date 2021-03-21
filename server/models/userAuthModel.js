@@ -9,10 +9,7 @@ const userAuthSchema = new mongoose.Schema({
     unique: true,
     required: true
   },
-  username: {
-    type: String,
-    unique: true,
-  },
+  username: String,
   hash: String,
   salt: String
 });
@@ -25,12 +22,14 @@ userAuthSchema.methods.setPassword = function(password) {
     .pbkdf2Sync(password, this.salt, 1000, 64, 'sha512')
     .toString('hex');
 };
+
 userAuthSchema.methods.validPassword = function(password) {
   const hash = crypto
     .pbkdf2Sync(password, this.salt, 1000, 64, 'sha512')
     .toString('hex');
   return this.hash === hash;
 };
+
 userAuthSchema.methods.generateJwt = function() {
   const expiry = new Date();
   expiry.setDate(expiry.getDate() + 7);
@@ -43,7 +42,7 @@ userAuthSchema.methods.generateJwt = function() {
       exp: parseInt(expiry.getTime() / 1000)
     },
     options.storageConfig.jwtSecret
-  ); // DO NOT KEEP YOUR SECRET IN THE CODE!
+  );
 };
 
 var userAuthModel = mongoose.model('Userauth', userAuthSchema);
