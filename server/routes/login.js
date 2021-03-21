@@ -2,8 +2,7 @@ var express = require('express');
 var router = express.Router();
 const passport = require('passport');
 
-router.get('/login', function(req, res) {
-
+router.post('/login', function(req, res) {
     passport.authenticate('local', function(err, user, info){
       var token;
   
