@@ -1,21 +1,18 @@
 export default {
   saveToken(token) {
-    console.log("token service");
-    console.log(token);
     localStorage.setItem('mevn-token', token);
-    localStorage.setItem('testtoken', "string!");
     this.token = token;
   },
   getToken() { 
     if (!this.token) {
         this.token = localStorage.getItem('mevn-token');
       }
-      return this.token;
+    return this.token;
   },
   logout() { 
-      this.token = ''; 
-      window.localStorage.removeItem('mevn-token');
-      window.location.href = '/';
+    this.token = ''; 
+    window.localStorage.removeItem('mevn-token');
+    window.location.href = '/';
   },
   getUserDetails() { 
     const token = this.getToken();

@@ -42,8 +42,9 @@ export default {
 	methods: {
 		register() {
 			if (
-				this.input.username != undefined &&
-				this.input.password != undefined
+				!!(this.input.username != undefined &&
+				this.input.password != undefined) &&
+				this.input.email != undefined
 			) {
 				console.log(this.input);
 				var registerToken = UserRegisterService.postUserRegistration(this.input);

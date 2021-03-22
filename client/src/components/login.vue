@@ -2,10 +2,10 @@
   <div class="login">
     <input
       type="text"
-      name="username"
-      v-model="input.username"
-      placeholder="Username"
-      :class="usernameClass"
+      name="email"
+      v-model="input.email"
+      placeholder="email"
+      :class="emailClass"
     />
     <input
       type="password"
@@ -19,14 +19,13 @@
 </template>
 
 <script>
-//import UserLoginService from "@/services/UserLoginService";
-
+import UserLoginService from "@/services/UserLoginService";
 export default {
 	name: "login",
 	data: function () {
 		return {
 			input: {},
-			usernameClass: "",
+			emailClass: "",
 			passwordClass: ""
 		};
 	},
@@ -35,13 +34,13 @@ export default {
 	methods: {
 		login() {
 			if (
-				this.input.username != undefined &&
+				this.input.email != undefined &&
 				this.input.password != undefined
 			) {
-				console.log(this.input);
+				UserLoginService.postUserLogin(this.input);
 			}
-			if (this.input.username == undefined) {
-				this.usernameClass = "error";
+			if (this.input.email == undefined) {
+				this.emailClass = "error";
 			}
 			if (this.input.password == undefined) {
 				this.passwordClass = "error";
