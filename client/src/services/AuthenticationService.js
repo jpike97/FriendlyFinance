@@ -1,6 +1,9 @@
 export default {
   saveToken(token) {
+    console.log("token service");
+    console.log(token);
     localStorage.setItem('mevn-token', token);
+    localStorage.setItem('testtoken', "string!");
     this.token = token;
   },
   getToken() { 
