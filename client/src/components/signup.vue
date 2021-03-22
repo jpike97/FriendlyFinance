@@ -5,43 +5,60 @@
 			name="username"
 			v-model="input.username"
 			placeholder="Username"
+			:class="usernameClass"
 		/>
 		<input
 			type="text"
 			name="email"
 			v-model="input.email"
 			placeholder="Email"
+			:class="emailClass"
 		/>
 		<input
 			type="password"
 			name="password"
 			v-model="input.password"
 			placeholder="Password"
+			:class="passwordClass"
 		/>
-		<button type="button" v-on:click="signup()">Sign Up</button>
+		<button type="button" v-on:click="register()">Sign Up</button>
 	</div>
 </template>
 
 <script>
+import UserRegisterService from "@/services/UserRegisterService.js";
 export default {
 	name: "signup",
 	data: function () {
 		return {
-			input: {}
+			input: {}, 
+			usernameClass: {},
+			passwordClass: {},
+			emailClass: {}
 		};
 	},
 	mounted() {},
 	computed: {},
 	methods: {
-		login() {
-			console.log(this.input.username);
-            console.log(this.input.password);
-            console.log(this.input.email);
-			if (this.input.username != "" && this.input.password != "" && this) {
+		register() {
+			if (
+				this.input.username != undefined &&
+				this.input.password != undefined
+			) {
 				console.log(this.input);
-				//post signup code to service
-            }
-            
+				var registerToken = UserRegisterService.postUserRegistration(this.input);
+				console.log("here's the token!");
+				console.log(registerToken);
+			}
+			if (this.input.username == undefined) {
+				this.usernameClass = "error";
+			}
+			if (this.input.password == undefined) {
+				this.passwordClass = "error";
+			}
+			if (this.input.email == undefined) { 
+				this.emailClass = "error";
+			}
 		}
 	}
 };
