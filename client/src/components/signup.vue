@@ -1,28 +1,43 @@
 <template>
-	<div class="login">
-		<input
-			type="text"
-			name="username"
-			v-model="input.username"
-			placeholder="Username"
-			:class="usernameClass"
-		/>
-		<input
-			type="text"
-			name="email"
-			v-model="input.email"
-			placeholder="Email"
-			:class="emailClass"
-		/>
-		<input
-			type="password"
-			name="password"
-			v-model="input.password"
-			placeholder="Password"
-			:class="passwordClass"
-		/>
-		<button type="button" v-on:click="register()">Sign Up</button>
-	</div>
+  <div class="sign-up__wrapper">
+    <h2>Create your Friendly Account</h2>
+    <div class="sign-up__inputs">
+      <div class="sign-up__input">
+        <label for="username">
+          <span class="text--small">Username</span>
+        </label>
+        <input
+          type="text"
+          name="username"
+          v-model="input.username"
+          :class="usernameClass"
+        />
+      </div>
+      <div class="sign-up__input">
+        <label for="email">
+          <span class="text--small">Email</span>
+        </label>
+        <input
+          type="text"
+          name="email"
+          v-model="input.email"
+          :class="emailClass"
+        />
+      </div>
+      <div class="sign-up__input">
+        <label for="password">
+          <span class="text--small">Password</span>
+        </label>
+        <input
+          type="password"
+          name="password"
+          v-model="input.password"
+          :class="passwordClass"
+        />
+      </div>
+    </div>
+    <button class="btn-default" type="button" v-on:click="register()">Sign Up</button>
+  </div>
 </template>
 
 <script>
@@ -68,4 +83,6 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style lang="scss" scoped>
 @import "@/scss/_variables.scss";
+@import "@/scss/components/shared/shared.scss";
+@import "@/scss/components/_signup.scss";
 </style>
