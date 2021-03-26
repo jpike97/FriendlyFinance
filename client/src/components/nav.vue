@@ -3,7 +3,7 @@
       <nav class="desktop">
       <router-link to="/">Home</router-link>
       <router-link to="/about">About</router-link>
-      <!-- <router-link to="/rando">Rando</router-link> -->
+      <router-link to="/rando">Rando</router-link>
       </nav>
       <nav class="mobile-tray">
       <div class="mobile-nav__header">

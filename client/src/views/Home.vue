@@ -2,8 +2,6 @@
   <div class="home">
     <div class="testing" style="background-color: white;">
     </div>
-    <usergrid />
-    <login />
     <signup />
   </div>
 </template>
@@ -11,15 +9,11 @@
 <script>
 // @ is an alias to /src
 //TODO: get rid of home component doesn't make a lot of sense
-import usergrid from '@/components/usergrid.vue';
-import login from '@/components/login.vue';
 import signup from '@/components/signup.vue';
 
 export default {
   name: 'Home',
   components: {
-    usergrid,
-    login,
     signup
   }
 }

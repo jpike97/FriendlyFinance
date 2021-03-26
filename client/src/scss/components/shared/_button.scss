@@ -5,4 +5,12 @@
     border: 1px solid $navy;
     background-color: $navy;
     color: $white;
+    cursor: pointer;
+    font-weight: bold;
+
+    &:hover { 
+        color: $navy;
+        background-color: $white;
+    }
+
 }
