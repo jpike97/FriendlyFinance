@@ -36,7 +36,8 @@
         />
       </div>
     </div>
-    <button class="btn-default" type="button" v-on:click="register()">Sign Up</button>
+    <button class="btn-default" :class="formValid ? 'ready' : ''" type="button" v-on:click="register()">Sign Up</button>
+    <div class=sign-up__login><span class="text--small">Have an Account?</span><a class="text--small text-link" href="/login">Sign in</a></div>
   </div>
 </template>
 
@@ -46,37 +47,45 @@ export default {
 	name: "signup",
 	data: function () {
 		return {
-			input: {}, 
+      input: { password: "", email: "", username: ""},
 			usernameClass: {},
 			passwordClass: {},
-			emailClass: {}
+      emailClass: {},
+      buttonClass: {}
 		};
 	},
 	mounted() {},
-	computed: {},
+	computed: {
+     formValid() {
+      if (this.input.password != "" && this.input.username != "" && this.input.password != "") { 
+        return true;
+      }
+      else { 
+        return false;
+      }
+    }
+  },
 	methods: {
 		register() {
 			if (
-				!!(this.input.username != undefined &&
-				this.input.password != undefined) &&
-				this.input.email != undefined
+				(this.formValid)
 			) {
 				console.log(this.input);
 				var registerToken = UserRegisterService.postUserRegistration(this.input);
 				console.log("here's the token!");
 				console.log(registerToken);
 			}
-			if (this.input.username == undefined) {
-				this.usernameClass = "error";
+			if (this.input.username == "") {
+        this.usernameClass = "error";
 			}
-			if (this.input.password == undefined) {
+			if (this.input.password == "") {
 				this.passwordClass = "error";
 			}
-			if (this.input.email == undefined) { 
+			if (this.input.email == "") { 
 				this.emailClass = "error";
 			}
 		}
-	}
+  }
 };
 </script>
 

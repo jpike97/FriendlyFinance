@@ -1,0 +1,7 @@
+.text-link { 
+    text-decoration: none;
+    color: $nypink;
+    &:hover { 
+        color: $darktext;
+    }
+}

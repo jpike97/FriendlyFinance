@@ -11,7 +11,13 @@
 
         .btn-default { 
             margin-top: 50px;
+            opacity: .5;
+            &.ready { 
+                opacity: 1;
+            }
         }
+
+
 
     }
 
@@ -47,6 +53,13 @@
             font-weight: bold;
         }
 
+    }
+
+    &__login { 
+        margin-top: 25px;
+        a { 
+            margin-left: 5px;
+        }
     }
 
 }
