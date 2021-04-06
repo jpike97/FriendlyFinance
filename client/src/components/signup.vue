@@ -38,11 +38,15 @@
     </div>
     <button class="btn-default" :class="formValid ? 'ready' : ''" type="button" v-on:click="register()">Sign Up</button>
     <div class=sign-up__login><span class="text--small">Have an Account?</span><a class="text--small text-link" href="/login">Sign in</a></div>
+    <div class="testing">
+      <a href="#" v-on:click="showUserDetails()">Click to Test</a>
+    </div>
   </div>
 </template>
 
 <script>
 import UserRegisterService from "@/services/UserRegisterService.js";
+import AuthenticationService from "@/services/AuthenticationService.js";
 export default {
 	name: "signup",
 	data: function () {
@@ -73,7 +77,7 @@ export default {
 				console.log(this.input);
 				var registerToken = UserRegisterService.postUserRegistration(this.input);
 				console.log("here's the token!");
-				console.log(registerToken);
+				console.log(registerToken);`                                                                                                `
 			}
 			if (this.input.username == "") {
         this.usernameClass = "error";
@@ -84,7 +88,13 @@ export default {
 			if (this.input.email == "") { 
 				this.emailClass = "error";
 			}
-		}
+    },
+    showUserDetails() { 
+      var userInfo = AuthenticationService.getUserDetails();
+      console.log(userInfo);
+      var isLoggedIn = AuthenticationService.isLoggedIn();
+      console.log(isLoggedIn);
+    }
   }
 };
 </script>

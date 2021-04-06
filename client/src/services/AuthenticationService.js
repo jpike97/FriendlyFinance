@@ -20,6 +20,8 @@ export default {
     if (token) {
       payload = token.split('.')[1];
       payload = window.atob(payload);
+      console.log("getting user details");
+      console.log(JSON.parse(payload));
       return JSON.parse(payload);
     } else {
       return null;
