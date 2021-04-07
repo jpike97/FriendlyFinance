@@ -9,7 +9,7 @@ var User = mongoose.model('User');
 const auth = jwt({
   secret: options.storageConfig.jwtSecret,
   userProperty: 'payload',
-  algorithms: ['RS256']
+  algorithms: ['HS256']
 });
 
 router.get('/profile', auth, (req, res) => {
@@ -22,8 +22,11 @@ router.get('/profile', auth, (req, res) => {
       });
     } else {
       // Otherwise continue
+      //TODO: connect with other user DB or maybe merge those together lol
+      console.log("id is " + req.payload._id);
       User.findById(req.payload._id).exec(function(err, user) {
         res.status(200).json(user);
+        console.log(user);
       });
     }
   });
