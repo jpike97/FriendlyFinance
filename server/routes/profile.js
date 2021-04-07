@@ -17,7 +17,9 @@ router.get('/profile', auth, (req, res) => {
     console.log(req);
     console.log("logging! pls");
     if (!req.payload._id) {
-
+      res.status(401).json({
+        message: 'UnauthorizedError: private profile'
+      });
     } else {
       // Otherwise continue
       User.findById(req.payload._id).exec(function(err, user) {
