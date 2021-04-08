@@ -24,7 +24,8 @@ router.get('/profile', auth, (req, res) => {
       // Otherwise continue
       //TODO: connect with other user DB or maybe merge those together lol
       console.log("id is " + req.payload._id);
-      User.findById(req.payload._id).exec(function(err, user) {
+      console.log("email is " + req.payload.email);
+      User.find({ 'email': req.payload.email }).exec(function(err, user) {
         res.status(200).json(user);
         console.log(user);
       });

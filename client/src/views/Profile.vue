@@ -1,7 +1,7 @@
 <template>
 	<div class="profile">
 		<h1>Profile Page!</h1>
-		<span>{{user.username}}</span>
+		<span>{{ user.username }}</span>
 	</div>
 </template>
 
@@ -21,10 +21,19 @@ export default {
 		};
 	},
 	mounted() {
-		let userToken = AuthenticationService.getToken();
-		console.log(userToken);
-		var user = UserProfileService.fetchUserProfile(userToken);
-		this.user = user;
+		this.getUserProfile();
+	},
+	methods: {
+		async getUserProfile() {
+			let userToken = AuthenticationService.getToken();
+			console.log(userToken);
+			const response = await UserProfileService.fetchUserProfile(
+				userToken
+			);
+			console.log("this is the newer response vue");
+			console.log(response.data);
+			this.user = response.data[0];
+		}
 	}
 };
 </script>
