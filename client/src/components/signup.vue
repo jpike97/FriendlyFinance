@@ -70,14 +70,13 @@ export default {
     }
   },
 	methods: {
-		register() {
+		async register() {
 			if (
 				(this.formValid)
 			) {
 				console.log(this.input);
-				var registerToken = UserRegisterService.postUserRegistration(this.input);
-				console.log("here's the token!");
-				console.log(registerToken);`                                                                                                `
+				await UserRegisterService.postUserRegistration(this.input);
+        window.location = "/profile";
 			}
 			if (this.input.username == "") {
         this.usernameClass = "error";

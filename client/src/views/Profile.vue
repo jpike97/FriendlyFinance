@@ -2,7 +2,6 @@
 	<div class="profile">
 		<h1>Profile Page!</h1>
 		<span>{{ user.username }}</span>
-		
 	</div>
 </template>
 

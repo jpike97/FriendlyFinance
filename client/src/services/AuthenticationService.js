@@ -2,6 +2,7 @@ export default {
   saveToken(token) {
     localStorage.setItem('mevn-token', token);
     this.token = token;
+    return token;
   },
   getToken() { 
     if (!this.token) {
