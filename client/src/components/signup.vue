@@ -38,9 +38,6 @@
     </div>
     <button class="btn-default" :class="formValid ? 'ready' : ''" type="button" v-on:click="register()">Sign Up</button>
     <div class=sign-up__login><span class="text--small">Have an Account?</span><a class="text--small text-link" href="/login">Sign in</a></div>
-    <div class="testing">
-      <a href="#" v-on:click="showUserDetails()">Click to Test</a>
-    </div>
   </div>
 </template>
 
@@ -61,7 +58,7 @@ export default {
 	mounted() {},
 	computed: {
      formValid() {
-      if (this.input.password != "" && this.input.username != "" && this.input.password != "") { 
+      if (this.input.password != "" && this.input.username != "" && this.input.email != "") { 
         return true;
       }
       else { 

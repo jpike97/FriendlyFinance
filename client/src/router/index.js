@@ -3,6 +3,7 @@ import VueRouter from "vue-router";
 //TODO: clean imports here 4 about page
 import Home from "../views/Home.vue";
 import Profile from "../views/Profile.vue";
+import Login from "../views/Login.vue";
 import About from "../views/About.vue";
 import AuthenticationService from "../services/AuthenticationService.js";
 
@@ -21,6 +22,11 @@ const routes = [
 		// this generates a separate chunk (about.[hash].js) for this route
 		// which is lazy-loaded when the route is visited.
 		component: About
+	},
+	{ 
+		path: "/login",
+		name: "Login",
+		component: Login
 	},
 	{
 		path: "/users/:id",

@@ -1,7 +1,5 @@
 <template>
   <div class="home">
-    <div class="testing" style="background-color: white;">
-    </div>
     <signup />
   </div>
 </template>

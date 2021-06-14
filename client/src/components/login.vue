@@ -1,21 +1,45 @@
 <template>
-  <div class="login">
-    <input
-      type="text"
-      name="email"
-      v-model="input.email"
-      placeholder="email"
-      :class="emailClass"
-    />
-    <input
-      type="password"
-      name="password"
-      v-model="input.password"
-      placeholder="Password"
-      :class="passwordClass"
-    />
-    <button type="button" v-on:click="login()">Login</button>
-  </div>
+	<div class="login">
+		<div class="sign-up__wrapper">
+			<h2>Login</h2>
+			<div class="sign-up__inputs">
+				<div class="sign-up__input">
+					<label for="email">
+						<span class="text--small">Email</span>
+					</label>
+					<input
+						type="text"
+						name="email"
+						v-model="input.email"
+						:class="emailClass"
+					/>
+				</div>
+				<div class="sign-up__input">
+					<label for="password">
+						<span class="text--small">Password</span>
+					</label>
+					<input
+						type="password"
+						name="password"
+						v-model="input.password"
+						:class="passwordClass"
+					/>
+				</div>
+			</div>
+			<button
+				class="btn-default"
+				:class="formValid ? 'ready' : ''"
+				type="button"
+				v-on:click="login()"
+			>
+				Login
+			</button>
+			<div class="sign-up__login">
+				<span class="text--small">No Account?</span>
+				<a class="text--small text-link" href="/">Sign Up</a>
+			</div>
+		</div>
+	</div>
 </template>
 
 <script>
@@ -30,7 +54,18 @@ export default {
 		};
 	},
 	mounted() {},
-	computed: {},
+	computed: {
+		formValid() {
+			if (
+				this.input.email != "" &&
+				this.input.password != ""
+			) {
+				return true;
+			} else {
+				return false;
+			}
+		}
+	},
 	methods: {
 		login() {
 			if (
@@ -38,6 +73,7 @@ export default {
 				this.input.password != undefined
 			) {
 				UserLoginService.postUserLogin(this.input);
+				window.location = "/profile";
 			}
 			if (this.input.email == undefined) {
 				this.emailClass = "error";
@@ -53,7 +89,9 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style lang="scss" scoped>
 @import "@/scss/_variables.scss";
+@import "@/scss/components/shared/shared.scss";
+@import "@/scss/components/_signup.scss";
 .error {
-  border: 1px solid red;
+	border: 1px solid red;
 }
 </style>
