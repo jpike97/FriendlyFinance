@@ -73,6 +73,7 @@ export default {
 				this.input.password != undefined
 			) {
 				UserLoginService.postUserLogin(this.input);
+				//TODO: logic here to redirect
 				window.location = "/profile";
 			}
 			if (this.input.email == undefined) {
